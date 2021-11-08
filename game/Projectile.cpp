@@ -862,7 +862,14 @@ bool idProjectile::Collide( const trace_t &collision, const idVec3 &velocity, bo
 				idAI * ai_ent = static_cast<idAI* >(ent);
 				if( ai_ent->team == player->team)	{
 					willPlayDamageEffect = false;
+					gameLocal.Printf("caught teammate\n"); // MOD
 				}
+				if (ai_ent->team != player->team) { // MOD
+					gameLocal.Printf("caught enemy\n");
+				}
+			}
+			else if (ent->IsType(idPlayer::GetClassType())) {
+				gameLocal.Printf("caught player");
 			}
 		}
 
